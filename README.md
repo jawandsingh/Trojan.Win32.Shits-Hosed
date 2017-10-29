@@ -17,11 +17,15 @@ Todo: Disable everything it can via the Administration thingo
 ## Compilation:
 
 For Linux:
+
   Install mono framework
   
   Command: "mcs hosed.cs /target:winexe -r:System.Windows.Forms.dll"
   
+  ---------------------------
+  
 For Windows:
+
   Install Visual Studio
   
   Use the standalone installer, probably without any other flags (just "mcs hosed.cs) [not sure]

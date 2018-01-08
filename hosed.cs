@@ -50,7 +50,7 @@ namespace MyNigga {
 //
 // Payloads (infinite loop starts here)
 //
-            while(i == true) {
+            while(i) {
                 Process[] processlist = Process.GetProcesses();
                 foreach (Process processitem in processlist) {
 // Set window titles
